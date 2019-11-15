@@ -1,0 +1,100 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Amulet",
+	"patterns": [
+		{ "include": "#comments" },
+		{ "include": "#constants" },
+		{ "include": "#strings" },
+		{ "include": "#keywords" },
+		{ "include": "#typevar" },
+		{ "include": "#constructor" },
+		{ "include": "#name" }
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.other.module.amulet",
+					"match": "\\b(include|module|open|import)\\b"
+				},
+				{
+					"name": "keyword.control.amulet",
+					"match": "\\b(as|begin|else|end|forall|fun|function|if|lazy|match|then|when|with)\\b"
+				},
+				{
+					"name": "keyword.other.value.amulet",
+					"match": "\\b(external|let|val|private|rec|and|in)\\b"
+				},
+				{
+					"name": "keyword.other.type.amulet",
+					"match": "\\b(class|deriving|type|instance|of)\\b"
+				}
+			]
+		},
+
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.language.unit.amulet",
+					"match": "\\(\\)"
+				},
+				{
+					"name": "constant.numeric.floating-point.amulet",
+					"match": "\\b-?[0-9][0-9_]*((\\.([0-9][0-9_]*([eE][+-]??[0-9][0-9_]*)?)?)|([eE][+-]??[0-9][0-9_]*))"
+				},
+				{
+					"name": "constant.numeric.integer.int.amulet",
+					"match": "\\b(-?((0(x|X)[0-9a-fA-F][0-9a-fA-F_]*)|(0(o|O)[0-7][0-7_]*)|(0(b|B)[01][01_]*)|([0-9][0-9_]*)))"
+				},
+				{
+					"name": "constant.others.amulet",
+					"match": "\\b(true|false|null|unit|void)\\b"
+				}
+			]
+		},
+
+		"strings": {
+			"name": "string.quoted.double.amulet",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [{
+				"name": "constant.character.escape.amulet", "match": "\\\\."
+			}]
+		},
+
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.block.documentation.amulet",
+					"begin": "\\(\\*\\*",
+					"beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.amulet" } },
+					"end": "\\*\\)",
+					"endCaptures": { "0": { "name": "punctuation.definition.comment.end.amulet" } },
+					"patterns": [ { "include": "#comments" } ]
+				},
+				{
+					"name": "comment.block.amulet",
+					"begin": "\\(\\*",
+					"beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.amulet" } },
+					"end": "\\*\\)",
+					"endCaptures": { "0": { "name": "punctuation.definition.comment.end.amulet" } },
+					"patterns": [ { "include": "#comments" } ]
+				}
+			]
+		},
+
+		"typevar": {
+			"name": "variable.parameter",
+			"match": "'[a-z]\\w*"
+		},
+		"constructor": {
+			"name": "entity.name.class support.class",
+			"match": "[[:upper:]]\\w*"
+		},
+		"name": {
+			"name": "variable.name",
+			"match": "[a-z]\\w*"
+		}
+	},
+	"scopeName": "source.amulet"
+}

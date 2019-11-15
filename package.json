@@ -1,0 +1,97 @@
+{
+  "name": "amulet-vscode",
+  "displayName": "Amulet",
+  "description": "Support for the Amulet programming language",
+  "version": "0.0.1",
+  "author": "SquidDev and matheus",
+  "license": "BSD (3 Clause)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amuletml/amulet-vscode"
+  },
+  "engines": {
+    "vscode": "^1.39.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:amulet",
+    "onCommand:amulet.restartServer"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "amulet",
+        "aliases": [
+          "Amulet",
+          "amulet"
+        ],
+        "extensions": [
+          ".ml",
+          ".aml"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "amulet",
+        "scopeName": "source.amulet",
+        "path": "./syntaxes/amulet.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "amulet.restartServer",
+        "title": "Amulet: Restart server"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "amulet.restartServer",
+          "when": "editorLangId == amulet"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Configuration for Amulet",
+      "properties": {
+        "amulet.amuletLspExecutable": {
+          "scope": "resource",
+          "type": "string",
+          "default": "amulet-lsp",
+          "description": "The name or path to the Amulet Language Server executable"
+        },
+        "amulet.libraryPath": {
+          "scope": "resource",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional folders to load files from."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc --watch -p ./",
+    "check": "tslint -p ./"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.0",
+    "@types/vscode": "^1.39.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.5.1"
+  }
+}
