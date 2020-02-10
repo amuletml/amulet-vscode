@@ -61,13 +61,13 @@
       "title": "Configuration for Amulet",
       "properties": {
         "amulet.amuletLspExecutable": {
-          "scope": "resource",
+          "scope": "window",
           "type": "string",
           "default": "amulet-lsp",
           "description": "The name or path to the Amulet Language Server executable"
         },
         "amulet.libraryPath": {
-          "scope": "resource",
+          "scope": "window",
           "type": "array",
           "uniqueItems": true,
           "items": {
@@ -86,12 +86,12 @@
     "check": "tslint -p ./"
   },
   "dependencies": {
-    "vscode-languageclient": "^5.2.1"
+    "vscode-languageclient": "^6.1.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.0",
-    "@types/vscode": "^1.39.0",
+    "@types/vscode": "^1.42.0",
     "tslint": "^5.16.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.7.5"
   }
 }
